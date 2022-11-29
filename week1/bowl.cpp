@@ -1,6 +1,7 @@
 #include<iostream>
 #include<unordered_map>
 using namespace std ;
+
 int main() {
     int n,x,i ;
     unordered_map<int,int> map ; 

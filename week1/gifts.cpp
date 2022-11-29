@@ -10,7 +10,6 @@ int main()
         cin >> price;
         if (price>0) {
             total += price ;
-            
         }
     }
     cout << total ;

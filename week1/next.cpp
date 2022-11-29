@@ -3,7 +3,6 @@
 #include<unordered_map>
 using namespace std ;
 
-
 int main() {
     int next,n ;
     int maxRound = 0 ;
@@ -30,7 +29,6 @@ int main() {
         passed[currentPerson]++ ;
 
 
-
         //find round 
         while(1) {
             if (currentPerson == person) {
@@ -44,8 +42,5 @@ int main() {
         //find Max round 
         maxRound = round>maxRound ? round : maxRound ;
     }
-
     cout << maxRound ; 
-
-
 }

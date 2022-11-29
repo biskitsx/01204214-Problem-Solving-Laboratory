@@ -3,8 +3,7 @@
 using namespace std ;
 
 int main() {
-    int nums,i ; 
-    int x,y ;
+    int nums,i,x,y ; 
     int totalScore = 0;
     double max ; 
     cin >> nums ; 
