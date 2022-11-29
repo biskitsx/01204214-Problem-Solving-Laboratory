@@ -3,33 +3,45 @@
 #include<unordered_map>
 using namespace std ;
 
-int findRound(unordered_map <int,int> map , int person) {
-    int currentPerson= map[person];
-    int round=1 ;
- 
-    while(1) {
-        if (currentPerson == person) {
-            return round ; 
-        }
-        currentPerson = map[currentPerson] ;
-        round++ ; 
-    }    
-}
 
 int main() {
-    int next ;
-    int n ;
+    int next,n ;
     int maxRound = 0 ;
-    int round ;
+
     unordered_map <int,int> Map ;
+    unordered_map <int,int> passed ;
+    
+    //input
     cin >> n ; 
     for (int i = 1 ; i<= n;i++) {
         cin >> next ;
         Map[next] = i ; 
     }
     
-    for (int i=n;i>=1;i--) {
-        round = findRound(Map,i) ;
+    //find round
+    for (int i=1;i<=n;i++) {
+        if (passed[i]==1) {
+            continue;
+        }
+
+        int person = i ;
+        int round = 1 ;
+        int currentPerson = Map[person] ;
+        passed[currentPerson]++ ;
+
+
+
+        //find round 
+        while(1) {
+            if (currentPerson == person) {
+                break ;
+            }
+            currentPerson = Map[currentPerson] ; ;
+            passed[currentPerson]++ ;
+            round++ ; 
+        }
+
+        //find Max round 
         maxRound = round>maxRound ? round : maxRound ;
     }
 
