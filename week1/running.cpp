@@ -31,4 +31,5 @@ int main() {
         }
     }
     cout << runnerLeft ;
+    
 }
