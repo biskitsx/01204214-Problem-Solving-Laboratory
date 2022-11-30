@@ -4,25 +4,22 @@
 using namespace std ;
 
 int main() {
-    int n,k,i,tpr,fastest ;
+    int n,k,i,tpr ;
+    int fastest = 100000 ;
     unordered_map <int,int> tprs ; 
 
-    //input 
+    //input and find fastest
     cin >> n >> k ; 
     for( i = 0 ; i < n; i++ ) {
         cin >> tpr ; 
-        tprs[i] = tpr ; 
+        tprs[i]= tpr ; 
+        if (tpr < fastest) {
+            fastest = tpr ; 
+        }
     }
 
-    //find fastest 
-    fastest = tprs[0] ; 
-    for (i=0;i<n;i++) {
-        if (tprs[i]< fastest) {
-            fastest = tprs[i] ; 
-            tprs[i] = 0 ;
-        } 
-    }
 
+    //comparison
     int runnerLeft = n ;
     fastest *= k ;
     for (i = 0; i< n;i++) {
@@ -31,5 +28,5 @@ int main() {
         }
     }
     cout << runnerLeft ;
-    
+
 }
