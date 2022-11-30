@@ -20,7 +20,7 @@ int main() {
         if (tprs[i]< fastest) {
             fastest = tprs[i] ; 
             tprs[i] = 0 ;
-        }
+        } 
     }
 
     int runnerLeft = n ;
@@ -32,5 +32,4 @@ int main() {
     }
 
     cout << runnerLeft ;
-
 }
