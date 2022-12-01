@@ -3,9 +3,10 @@
 using namespace std ;
 
 int main() {
-    int n,k,i,time;
-    float fastest = 100000 ;
-    vector <float> timesPerRound ;
+    double n,k,i ; 
+    double time ;
+    double fastest = 100000 ;
+    vector <double> timesPerRound ;
 
     //input and find fastest runner 
     cin >> n >> k ;
@@ -16,13 +17,13 @@ int main() {
     }
 
 
-    int runnerLeft = n  ;
+    double runnerLeft = n  ;
     //max Time for running
-    int maxTime = fastest * k ;
+    double maxTime = fastest * k ;
     
     //find runner left 
     for (i=0;i<n;i++) {
-        float roundRunner = maxTime/timesPerRound[i] ; 
+        double roundRunner = maxTime/timesPerRound[i] ; 
         if (roundRunner <= k-1) {
             runnerLeft-- ; 
         }
