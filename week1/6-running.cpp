@@ -15,6 +15,7 @@ int main() {
         fastest = time < fastest ? time : fastest ; 
     }
 
+
     int runnerLeft = n  ;
     //max Time for running
     int maxTime = fastest * k ;
