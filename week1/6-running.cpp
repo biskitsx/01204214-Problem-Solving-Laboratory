@@ -7,7 +7,7 @@ int main() {
     float fastest = 100000 ;
     vector <float> timesPerRound ;
 
-    //input and find fastest
+    //input and find fastest runner 
     cin >> n >> k ;
     for (i=0;i<n;i++) {
         cin >> time ; 
@@ -15,10 +15,11 @@ int main() {
         fastest = time < fastest ? time : fastest ; 
     }
 
-    //find runner left 
     int runnerLeft = n  ;
     //max Time for running
-    float maxTime = fastest * k ;
+    int maxTime = fastest * k ;
+    
+    //find runner left 
     for (i=0;i<n;i++) {
         float roundRunner = maxTime/timesPerRound[i] ; 
         if (roundRunner <= k-1) {
