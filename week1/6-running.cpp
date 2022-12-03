@@ -1,30 +1,27 @@
 #include<iostream>
-#include<vector>
 using namespace std ;
 
 int main() {
-    double n,k,i ; 
-    double time ;
-    double fastest = 100000 ;
-    vector <double> timesPerRound ;
+    int i ;
+    long runnerLeft,time ; 
+    long timesPerRound[1000000];
+    long fastest = 100000 ,k,n;
 
     //input and find fastest runner 
     cin >> n >> k ;
     for (i=0;i<n;i++) {
         cin >> time ; 
-        timesPerRound.push_back(time) ; 
-        fastest = time < fastest ? time : fastest ; 
+        timesPerRound[i] = time; 
+        if (time < fastest) {
+          fastest = time ; 
+        }
     }
 
-
-    double runnerLeft = n  ;
-    //max Time for running
-    double maxTime = fastest * k ;
+    runnerLeft = 5 ;
     
     //find runner left 
     for (i=0;i<n;i++) {
-        double roundRunner = maxTime/timesPerRound[i] ; 
-        if (roundRunner <= k-1) {
+        if ((fastest*k*1.00)/(timesPerRound[i]+0.0) <= k-1) {
             runnerLeft-- ; 
         }
     }
