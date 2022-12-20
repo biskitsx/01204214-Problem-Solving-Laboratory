@@ -6,7 +6,7 @@ using namespace std ;
 
 void showList(list<int> linkListed) {
     list<int>:: iterator ptr;
-
+    
     for (ptr=linkListed.begin(); ptr != linkListed.end(); ptr++){
         cout << *ptr << '\n' ; 
     }
@@ -15,6 +15,9 @@ void showList(list<int> linkListed) {
 
 void showMap(unordered_map<int,list<int> > allChanchala) {
     for (auto e : allChanchala) {
+        if (e.second.empty()) {
+            continue; 
+        }
         showList(e.second) ; 
     }
 }
@@ -33,7 +36,7 @@ int main() {
         //insert a train to chanchala
         if (command=='N') {
             chanChala[j].push_back(i) ; 
-            cout << "what\n" ; 
+            // cout << "what\n" ; 
         }
 
         else if (command=='M') {
@@ -42,5 +45,5 @@ int main() {
         // showMap(chanChala) ;
     }
 
-    // showMap(chanChala)  ;    
+    showMap(chanChala)  ;    
 }
