@@ -6,7 +6,7 @@ using namespace std ;
 
 void showList(list<int> linkListed) {
     list<int>:: iterator ptr;
-    
+
     for (ptr=linkListed.begin(); ptr != linkListed.end(); ptr++){
         cout << *ptr << '\n' ; 
     }
@@ -41,6 +41,8 @@ int main() {
 
         else if (command=='M') {
             chanChala[j].splice(chanChala[j].end(),chanChala[i]) ; 
+            showList(chanChala[i])  ;
+            cout << " go\n";
         }
         // showMap(chanChala) ;
     }
