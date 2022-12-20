@@ -13,12 +13,14 @@ void showList(list<int> linkListed) {
     return ;
 }
 
-void showMap(unordered_map<int,list<int> > allChanchala) {
-    for (auto e : allChanchala) {
-        if (e.second.empty()) {
-            continue; 
+void showMap(list<int> chanChala[100001]) {
+    int i ;
+    for (i=0;i<100001;i++) {
+        if (chanChala[i].empty()) {
+            continue;
         }
-        showList(e.second) ; 
+
+        showList(chanChala[i]) ; 
     }
 }
 
@@ -27,7 +29,7 @@ int main() {
     int i , j ; 
     char command ; 
 
-    unordered_map <int,list<int> > chanChala ; 
+    list<int> chanChala[100001] ; 
 
     cin >> n  ;
     for (index = 0 ; index < n ; index++) {
@@ -41,11 +43,11 @@ int main() {
 
         else if (command=='M') {
             chanChala[j].splice(chanChala[j].end(),chanChala[i]) ; 
-            showList(chanChala[i])  ;
-            cout << " go\n";
         }
-        // showMap(chanChala) ;
     }
 
-    showMap(chanChala)  ;    
+
+    showMap(chanChala) ;
+
+
 }
