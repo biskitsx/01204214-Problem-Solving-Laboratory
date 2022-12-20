@@ -3,7 +3,6 @@
 #include<list>
 using namespace std ; 
 
-
 void showList(list<int> linkListed) {
     list<int>:: iterator ptr;
 
