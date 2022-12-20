@@ -1,49 +1,74 @@
 #include<iostream>
+#include<unordered_map>
+#include<list>
 #include<vector>
-
 using namespace std ; 
 
-void showVector(vector<int> discardedCard) {
-    for (auto e : discardedCard) {
-        cout << e << ' ' ;
+void showList(list<int> linkListed) {
+    if (linkListed.empty()) {
+        cout << '\n' ; 
+        return ; 
+    }
+    list<int>:: iterator ptr;
+    cout << ' ' ; 
+    for (ptr=linkListed.begin(); ptr != linkListed.end(); ptr++){
+        if (ptr != linkListed.begin()) {
+            cout << ", " << *ptr ; 
+        }
+        else {
+            cout << *ptr ;
+        }
     }
     cout << '\n' ; 
+    return ;
 }
 
+
 int main() {
-    int n,i ;
+    int n, i ;
+
+    vector < pair <int,list<int> > > decks ;
+
     while(1) {
-        cin >> n ; 
-        if (n == 0) {
+
+        cin >> n ;
+        if (n==0 ) {
+            
             break; 
         }
         
-        vector <int> discardedCard ;
-        vector <int> onHandCard ;
 
-        for (i=1;i<=n;i+=2) {
-            discardedCard.push_back(i) ;
-            if (i!=n) {
-                onHandCard.push_back(i+1) ; 
-            } 
+        list<int> onHandCards ; 
+        list<int> discardedCards ; 
+        pair <int,list<int> > deck;
+
+        for (i=1;i<=n;i++) {
+            onHandCards.push_back(i) ; 
         }
 
-        int indexStart = 1 ;
-
-        while(1) {
-            if (onHandCard.size()==1) {
-                break; 
-            }
-            for (i = indexStart; i <= (onHandCard.size()-1) ; i+=2) {
-                discardedCard.push_back(onHandCard[i]) ; 
-                // onHandCard.
-            }
-
+        while(onHandCards.size()!=1) {
+            discardedCards.push_back(onHandCards.front()) ; 
+            onHandCards.pop_front() ; 
+            onHandCards.push_back(onHandCards.front()) ; 
+            onHandCards.pop_front() ; 
         }
 
+        deck.first = onHandCards.front(); 
+        deck.second = discardedCards ; 
 
-
+        decks.push_back(deck) ; 
+        // showList(discardedCards) ; 
     }
 
-    
+    for (auto e : decks) {
+        cout << "Discarded cards:" ;
+        showList(e.second) ;
+        
+        cout << "Remaining card: " << e.first << endl ;
+    }
+
+
+
+
+
 }
