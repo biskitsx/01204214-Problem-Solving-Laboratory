@@ -3,10 +3,10 @@
 using namespace std ;
 
 int main( )  {
-    int n , i ; 
-    long long quality , price   ;
+    int n , i , max ; 
+    long quality , price   ;
     int cantSold = 0 ;
-    vector <long long> carQuality ; 
+    vector <long> carQuality ; 
 
     cin >> n ;
 
@@ -14,13 +14,19 @@ int main( )  {
         cin >> price >> quality ; 
         carQuality.push_back(quality) ; 
 
-        if (i!=0) {
-            if (carQuality[i]> carQuality[i-1]) {
-                cantSold++ ; 
-            }
+    }
+    
+    max = carQuality[n-1] ;
+    
+    for (i=n-2;i>=0;i--) {
+        
+        if (carQuality[i] > max) {
+            max = carQuality[i] ; 
+        }
+        else if (carQuality[i] < max) {
+            cantSold++ ; 
         }
     }
 
-
-    cout << cantSold <<endl ; 
+    cout << cantSold ;
 }
