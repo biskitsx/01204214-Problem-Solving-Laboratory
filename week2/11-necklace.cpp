@@ -129,7 +129,7 @@ int main() {
         }
     }
 
-    showList(beadLine.front()) ; 
+    showList(beadLine[1]) ; 
 
 
 }
