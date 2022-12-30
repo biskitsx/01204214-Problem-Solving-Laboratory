@@ -7,8 +7,8 @@ int main() {
     int n ,i ,j ,max;
     int codingLevel ; 
     int winnerIndex;  
-    vector <int> winner ; 
-    int challengerIndex[10000] ; 
+    int winner[1000000] ; 
+    int challengerIndex[1000000] ; 
     
     cin >> n ;
 
@@ -21,18 +21,25 @@ int main() {
                 winnerIndex = i*n + j + 1 ;
             }
         }
-        auto it = upper_bound(winner.cbegin(), winner.cend(), max, greater<int>());
-        winner.insert(it, max);
+        winner[i] = max ;
         challengerIndex[max] = winnerIndex ; 
     }
 
-    i = 0;
-    for (auto e: winner) {
-        if (i==3) {
-            cout << challengerIndex[e] ;
-            break;  
-        }
-        cout << challengerIndex[e] << ' '; 
-        i++ ;
-    }
+    int a = winner[0] > winner[1] ? winner[0] : winner[1] ;
+    int b = winner[2] > winner[3] ? winner[2] : winner[3] ;
+    int f = a > b ? a : b ; 
+    int s = a < b ? a : b ;
+    a = winner[0] > winner[1] ? winner[1] : winner[0] ; 
+    b = winner[2] > winner[3] ? winner[3] : winner[2] ; 
+    
+
+
+    cout << challengerIndex[f] << ' ' ;
+    cout << challengerIndex[s] << ' ' ;
+    cout << challengerIndex[a] << ' ' ;
+    cout << challengerIndex[b] ;
+
+    
+
+
 }
