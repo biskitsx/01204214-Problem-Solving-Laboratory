@@ -12,8 +12,6 @@ int main() {
 
     for (i=0;i<n-1;i++) {
         cin >> next >> begin ;
-        // sum -= begin ; 
-        // cout << sum << endl ;
 
         //begin is never use 
         // cout << neckLace[begin] ; 
