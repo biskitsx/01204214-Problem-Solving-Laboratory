@@ -63,7 +63,6 @@ void eachSpace() {
                 else if (countGrade == 1) {
                     normalSpace += countEach ; 
                 }
-
                 countGrade = 0 ;
                 countEach = 0 ;
             }
