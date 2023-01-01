@@ -60,9 +60,6 @@ void readInput() {
     }
 }
 
-// bool visited[101] {
-
-// }
 
 int main() {
     readInput() ;
