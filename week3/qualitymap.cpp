@@ -4,8 +4,8 @@ using namespace std;
 
 int n,m,i,j ;
 
-char map[31][31] ; 
-bool visited[31][31] ={{false}}; 
+char map[101][101] ; 
+bool visited[101][101] ={{false}}; 
 
 //input
 void readInput() {
