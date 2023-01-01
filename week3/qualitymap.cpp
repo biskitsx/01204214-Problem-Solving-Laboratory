@@ -27,7 +27,7 @@ int countEach = 0;
 int countGrade = 0; 
 //move
 void traversal(int row,int column) {
-    if (row == -1 || row == n || column == -1 || column == m || visited[row][column] ) {
+    if (row < 0 || row >= n || column < 0 || column >= m || visited[row][column] ) {
         // cout << map[row][column] << endl ; 
         return ;
     }
@@ -55,8 +55,6 @@ void eachSpace() {
         for (j=0;j<m;j++) {
             if (!visited[i][j]) {
 
-                countGrade = 0 ;
-                countEach = 0 ;
                 traversal(i,j) ; 
 
                 if (countGrade == 2) {
@@ -65,6 +63,9 @@ void eachSpace() {
                 else if (countGrade == 1) {
                     normalSpace += countEach ; 
                 }
+
+                countGrade = 0 ;
+                countEach = 0 ;
             }
         }
     }
