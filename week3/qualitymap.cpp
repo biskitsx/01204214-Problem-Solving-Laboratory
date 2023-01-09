@@ -25,6 +25,7 @@ int highSpace = 0 ;
 
 int countEach = 0; 
 int countGrade = 0; 
+
 //move
 void traversal(int row,int column) {
     if (row < 0 || row >= n || column < 0 || column >= m || visited[row][column] ) {
