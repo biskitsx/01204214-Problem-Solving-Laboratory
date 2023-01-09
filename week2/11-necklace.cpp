@@ -1,51 +1,44 @@
 #include<iostream>
-using namespace std; 
+
+using namespace std;
+
+int n , i , x , y, tmp; 
+
 
 int main() {
-    int n, i, next, begin ,connect;
-    int neckLace[300001] = {0}; 
+    cin >> n ;
 
-    // cout << neckLace[4] ;
-        
-    cin >>  n ; 
+    int neckLace[900000] = {0}; 
+
     int sum = n*(n+1)/2 ; 
+    for (i=1;i<n;i++) {
+        cin >> x >> y ; 
+        tmp  = 0; 
 
-    for (i=0;i<n-1;i++) {
-        cin >> next >> begin ;
-
-        //begin is never use 
-        // cout << neckLace[begin] ; 
-        if (neckLace[begin] == 0) {
-            neckLace[begin] = next ;
-            sum -= begin ; 
-            // cout << sum << endl ; 
+        if (neckLace[y] != 0) {
+            tmp = neckLace[y] ; 
         }
 
-        //begin is already used 
-        else {
-            connect = neckLace[begin] ;
-            neckLace[begin] = next ;
-            int lastBegin = begin ;
-            while(1) {
-                if (neckLace[lastBegin]==0) {
-                    break;
-                }
-                lastBegin = neckLace[lastBegin] ;
+
+        neckLace[y] = x ;
+
+        if (tmp != 0 ) {
+            while (neckLace[x]!=0) {
+                x = neckLace[x] ; 
             }
-            neckLace[lastBegin] = connect ;
-            sum -= lastBegin ; 
-            // cout << sum << endl ; 
-        }
+            neckLace[x]  = tmp ; 
+        } 
     }
+    int count =  0 ;
+    for (i = 1 ; i < n + 1 ; i++) {
+        count += neckLace[i] ; 
+    }
+    int start = sum - count;
 
-    int start = n - sum ;
-    cout << start << ' '; 
-    while(1) {
-        if (neckLace[neckLace[start]] == 0) {
-            cout << neckLace[start] ;
-            break;
-        }
-        cout << neckLace[start] << ' ';
+    cout << start << ' ' ; 
+    while (neckLace[start] != 0 ) {
+        cout << neckLace[start] << ' ' ; 
         start = neckLace[start] ; 
     }
+
 }
