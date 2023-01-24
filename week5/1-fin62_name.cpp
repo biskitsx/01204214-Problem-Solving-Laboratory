@@ -16,7 +16,7 @@ int main() {
         if (socialText[i]==name[current]) {
             current++ ; 
 
-            if (current == nameSize-1) {
+            if (current == nameSize) {
                 s++ ;
                 current = 0 ;
             }
