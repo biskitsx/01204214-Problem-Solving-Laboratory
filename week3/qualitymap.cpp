@@ -25,7 +25,7 @@ int highSpace = 0 ;
 
 int countEach = 0; 
 int countGrade = 0; 
-
+int keep[2] = {0};
 //move
 void traversal(int row,int column) {
     if (row < 0 || row >= n || column < 0 || column >= m || visited[row][column] ) {
@@ -36,12 +36,12 @@ void traversal(int row,int column) {
     visited[row][column] = true ; 
     countEach++ ;
  
-    if (map[row][column] == '$') {
-        countGrade++ ;
+    if (map[row][column] == '$'){
+        keep[0] = 1;
     }
 
-    else if (map[row][column] == '*') {
-        countGrade++ ; 
+    else if (map[row][column] == '*' ) {
+        keep[1] = 1 ;
     }
         
     traversal(row-1,column) ;
@@ -57,14 +57,16 @@ void eachSpace() {
             if (!visited[i][j]) {
 
                 traversal(i,j) ; 
-
+                countGrade = keep[0] + keep[1] ; 
                 if (countGrade == 2) {
                     highSpace += countEach ;
                 }
                 else if (countGrade == 1) {
                     normalSpace += countEach ; 
                 }
-                countGrade = 0 ;
+
+                keep[0] = 0 ;
+                keep[1] = 0 ;
                 countEach = 0 ;
             }
         }
