@@ -1,43 +1,23 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <queue> 
 using namespace std;
 
+int n,m,i,j,x;
 vector <int> adj[31] ;
-vector <bool> hinder[31] = {{false}} ; 
+bool visited[31][31] ;
 
-int n, m ; 
-int i, j ;
-char s ; 
-
-
-//input 
 void readInput() {
     cin >> n >> m ;
-    for (i=0; i<n; i++) {
-        for (j=0; j<m; j++) {
-            cin >> s ;
-            adj[i].push_back(s) ; 
-            if (s == '#') {
-                hinder[i][j] = true ;
-            }
+    for (i=0;i<n;i++) {
+        for (j=0;j<m;j++) {
+            cin >> x ;
+            adj[i].push_back(x) ;
         }
     }
 }
 
-int x1,x2,y1,y2  ; 
-//coor
-//x1,y1
-//x1,y2
-//x2,y1
-//x2,y2
-
-
-void moveBox() {
-    if ()
-}
-
 
 int main() {
-    readInput() ; 
 
 }
