@@ -40,11 +40,11 @@ void travel(int x,int y,int prevHeight) {
         return ; 
     }
 
-    visited[x][y] = true ; 
 
     if (x==n-1 && y==n-1) {
         s++ ; 
     }
+    visited[x][y] = true ; 
     
     travel(x+1,y,currentHeight) ; 
     travel(x-1,y,currentHeight) ;
@@ -55,7 +55,7 @@ void travel(int x,int y,int prevHeight) {
 
 int main() {
     readInput() ; 
-    travel(0,0,0) ;
+    travel(0,0,adj[0][0]) ;
 
     if (s==0) {
         cout << "no\n" ;
