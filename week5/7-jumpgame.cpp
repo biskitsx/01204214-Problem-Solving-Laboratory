@@ -63,6 +63,5 @@ int main() {
     else {
         cout << "yes\n" ;
     }
-
     return 0 ;
 }
