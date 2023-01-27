@@ -1,94 +1,54 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#define  MAX_N 1000000
+#include<unordered_map>
+#define MAX_N 1000000
 
 using namespace std;
 
 int n, m ;
 int u, v ;
 int i, j ;
-int start ;
 
-vector <int> adj[MAX_N];  
-int degree[MAX_N] = {0} ; 
-int inDegree[MAX_N] = {0} ; 
+unordered_map<int, vector<int>> adj; 
+unordered_map<int, int> inDegree; 
+priority_queue<int, vector<int>, greater<int>> pq;
+vector<bool> visited;
 
 void readInput() {
     cin >> n >> m ;
+    visited.resize(n+1,false);
     for (i = 0 ; i < m ;i ++) {
         cin >> u >> v ;
         adj[u].push_back(v) ; 
-        inDegree[v]++ ;
-        degree[u]++ ;
+        inDegree[v]++;
     }
-}
-
-bool isCycle() {
-    for (i = 1 ; i <= n ; ++i) {
-        if (adj[i].empty()) {
-            return false ;
-        }
-    }
-    return true ; 
 }
 
 void topoSort() {
-    
-    // find first inDegree 
-    int start ;
-    for (i=1;i<=n;i++) {
+    for (i = 1; i <= n; i++) {
         if (inDegree[i] == 0) {
-            start = i ; 
-            break;
+            pq.push(i);
         }
     }
 
-    queue <int> q ;
-    q.push(start) ;
+    while (!pq.empty()) {
+        int u = pq.top();
+        pq.pop();
+        cout << u << endl;
+        visited[u] = true;
 
-    for (i=1;i<=n;i++) {
-        int u = q.front() ; 
-        cout << u << endl ;
-        q.pop() ;
-        
-        //-1 mean this vertex has been deleted
-        inDegree[u] = -1 ;
-        
-        //update in degree 
-        for (j=0;j<degree[u];j++) {
-            int v = adj[u][j] ; 
-            inDegree[v]-- ;
-        }
-
-        //find min inDegree
-        int min = 100000;
-        int cur ;
-        for (j=1;j<=n;j++) {
-            if (inDegree[j] < min && inDegree[j] != -1) {
-                min = inDegree[j] ;
-                cur = j ;
-                if (min == 0) {
-                    break; 
-                }
+        for (int v : adj[u]) {
+            inDegree[v]--;
+            if (inDegree[v] == 0 && !visited[v]) {
+                pq.push(v);
             }
         }
-        q.push(cur) ; 
-
-    }
-
-}
-void topological() {
-    if (isCycle()) {
-        cout << "no\n" ;
-    }
-    else {
-        topoSort() ;
     }
 }
 
 int main() {
-    readInput() ; 
-    // cout << inDegree[1] ;
-    topological() ; 
+    readInput();
+    topoSort();
+    return 0;
 }
