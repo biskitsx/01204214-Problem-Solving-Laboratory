@@ -75,6 +75,7 @@ void bfs() {
         }
     }
 }
+
 int main() {
     readInput() ; 
     bfs();
