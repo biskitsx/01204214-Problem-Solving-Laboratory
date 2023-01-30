@@ -32,7 +32,6 @@ int greedy() {
             pay = max(((currentDate - deadLine - 10)*(1000)),pay); 
             // cout << pay << endl ;
         }
-
     }
     return pay ;
 }
