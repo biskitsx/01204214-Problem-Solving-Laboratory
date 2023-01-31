@@ -63,6 +63,8 @@
         "list": "cpp",
         "queue": "cpp",
         "deque": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "__tree": "cpp",
+        "set": "cpp"
     }
 }

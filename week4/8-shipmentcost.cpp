@@ -7,6 +7,8 @@ using namespace std;
 vector <int> adj[100001] ;
 int type[100001] = {0} ; 
 int deg[100001] = {0}  ;
+int lst[100001] ; 
+vector<int> factory ; 
 
 int n, m, s, t ;
 int i, j ;
@@ -28,9 +30,15 @@ void bfs(int start) {
     queue <int> q ;
 
     clear() ; 
-    visited[start] = true ;
+    for (auto e: factory) {
+        q.push(e);
+        visited[e]  = true ;
+    }
+    // visited[start] = true ;
     layer[start] = 0 ;
     q.push(start) ;
+    vector<int> dist;
+    dist.resize(n+1, 0);
 
     while(!q.empty()) {
         int curr = q.front() ;
@@ -45,14 +53,13 @@ void bfs(int start) {
             int next = adj[curr][i] ; 
             if (!visited[next]) {
                 visited[next] = true ;
-                layer[next] = layer[curr] + 1 ;
-                if (type[next] == 1) {
-                    cout <<layer[next] << '\n';  
-                    return ; 
-                }
+                dist[next] = dist[curr] + 1 ;
                 q.push(next) ; 
             }
         }
+    }
+    for (auto e : factory) {
+        layer[e] = min(layer[e],dist[e]) ; 
     }
 }
 
@@ -77,10 +84,16 @@ void readInput() {
         cin >> a ;
         // type[b] = 0 ;
         // cout << "bug\n" ; 
-        bfs(a) ; 
+        factory.push_back(a) ; 
+
     }
 }
 
+
+
 int main() {
     readInput() ;
+    for (auto e : factory) {
+        cout << layer[e] << "\n" ; 
+    }
 }
