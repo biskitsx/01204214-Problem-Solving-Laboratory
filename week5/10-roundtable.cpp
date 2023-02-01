@@ -1,42 +1,30 @@
 #include<iostream>
-#include<vector>
+#include<unordered_map>
 using namespace std;
 
 int n, i;
 int order[200001] ; 
-int lastMax = 0 ;
-int currMax = 1 ;
+int maxCount = 0; 
+
+unordered_map<int,int> moveCount ; 
 
 void readInput() {
     cin >> n ;
-    for (i=0;i<n;i++) {
+    for (i=1;i<=n;i++) {
         cin >> order[i] ;
     }
 }
 
-void maxSort() {
-    for (i=0;i<n-1;i++) {
-        if (order[i]+1 == order[i+1] || (order[i] == n && order[i+1] == 1)) {
-            currMax++ ;
-            // cout << currMax << endl;
-        }
-        else {
-            if (lastMax < currMax) {
-                lastMax = currMax ;
-            }
-            currMax = 1 ;
-        }
+int maxTable() {
+    for (i=1;i<=n;i++) {
+        int move = (order[i] - i + n)%n;
+        moveCount[move]++ ;
+        maxCount = max(maxCount,moveCount[move]); 
     }
+    return maxCount ;
 }
 
 int main() {
     readInput() ;
-    maxSort() ; 
-    // cout << "lastmax = " << lastMax << " currMax = " << currMax << endl;
-    if (currMax > lastMax) {
-        cout << currMax ;
-    }
-    else {
-        cout << lastMax ; 
-    }
+    cout << maxTable() ;
 }
