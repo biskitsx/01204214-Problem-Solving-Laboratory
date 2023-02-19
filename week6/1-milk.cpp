@@ -3,7 +3,6 @@
 using namespace std ;
 
 int n, q, i, j, u, v ; 
-pair<int, int> Edge[200001] ; 
 int root[100001] ; 
 char command ; 
 
