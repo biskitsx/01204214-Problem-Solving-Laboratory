@@ -4,8 +4,8 @@
 
 using namespace std;
 
-pair <int, pair<int ,int> > edge[1001] ; 
-int root[1001] ;
+pair <int, pair<int ,int> > edge[200001] ; 
+int root[100001] ;
 
 int n, m, i, minWeight = 0;
 
