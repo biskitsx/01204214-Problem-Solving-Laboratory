@@ -24,7 +24,8 @@ long long merge(vector<int>& arr, int left, int mid, int right) {
     while (i <= mid && j <= right) {
         if (arr[i] <= arr[j]) {
             temp[k++] = arr[i++];
-        } else {
+        } 
+        else {
             temp[k++] = arr[j++];
             inversionCount += mid - i + 1;
         }
@@ -61,4 +62,5 @@ long long mergeSort(vector<int>& arr, int left, int right) {
 
 int main() {
     readInput() ; 
+    cout << mergeSort(arr,0,n-1) ; 
 }
