@@ -7,15 +7,15 @@ int i, j;
 vector <pair<int,int> > segment ;  
 
 int main() {
-    cin >> n ;
+    // cin >> n ;
 
-    for (i=0;i<n;i++) {
-        cin >> m ;
-        segment.resize(m) ;
-        j=0; 
-        
-        while (l != 0 && r != 0) {
-            cin >> segment[j].first >> segment[j].second ;
-        }
-    }
+    // for (i=0;i<n;i++) {
+    //     cin >> m ;
+    //     segment.resize(m) ;
+    //     j=0; 
+
+    //     while (l != 0 && r != 0) {
+    //         cin >> segment[j].first >> segment[j].second ;
+    //     }
+    // }
 }
