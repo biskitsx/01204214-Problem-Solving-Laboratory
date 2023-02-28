@@ -7,11 +7,11 @@ int root[100001] ;
 char command ; 
 
 int parent(int x) {
-    while (root[x] != x) {
-        root[x] = root[root[x]] ;
-        x = root[x] ; 
+    if (root[x] == x) {
+        return x ;
     }
-    return x; 
+    root[x] = parent(root[x]) ;
+    return root[x] ; 
 }
 
 void unionFind(int a, int b) {
