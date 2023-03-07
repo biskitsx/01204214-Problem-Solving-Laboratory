@@ -1,99 +1,80 @@
 #include<iostream>
 #include<vector>
-#include<queue>
-
-using namespace std ;
+#include<set>
+using namespace std;
 
 int n, m;
+int u, v, w ; 
+double t ;
+int maxEdge = 0  ;
+
 int speed[100001] ;
-int u, v, w;
-int i, j;
+int root[200001] ; 
 
-double maxTime = 0xfffffff;
-int round = 0 ;
-int nub = 1 ;
-
-vector<pair<int,double> > graph[100001] ;
-
-double dist[100001] ;
-bool visited[100001] ;
-
-//input
-
-void reset() {
-    for (i = 1; i <= n; i++) {
-        dist[i] = 0xfffffff;
-        visited[i] = false ;
-    }
-}
-
-
-double findTime() {
-    double t = (speed[v]+speed[u])/w ; 
-    return t ;
-}
+using edge = pair<int,pair<int,int> > ;
+set <edge> Graph ;
 
 void readInput() {
-    cin >> n >> m ;
+    cin >> n >> m  ;
 
-    for (i=1;i<=n;i++) {
-        cin >> speed[i] ;
+    //get speed 
+    for (int i = 1 ; i<n+1; i++) {
+        cin >> speed[i] ; 
     }
 
-    for (i=0;i<m;i++) {
-        cin >> u >> v >> w;
-        double time = findTime() ; 
+    //get Edge weight = time 
+    for (int i = 0; i < m ;i++) {
+        cin >> u >> v >> w ;
 
-        graph[u].push_back(make_pair(v,time));
-        graph[v].push_back(make_pair(u,time));
-    }
-}
+        t = w*1.0/((speed[u]+speed[v])*1.0) ; 
+        if ((int)t != t) {
+            t = int(t) + 1;
+        }
 
-void bfs() {
-    reset() ; 
-    queue<int> q ; 
-    q.push(1) ; 
-    visited[1] = true ;
-
-    round++  ;
-    nub = 1 ;
-
-    while(!q.empty()) {
-        int curr = q.front() ; 
-        q.pop() ; 
-
-        int i ;
-        for (i=0;i<graph[curr].size();i++) {
-            int next = graph[curr][i].first ;
-            double time = graph[curr][i].second ; 
-            
-            if (time > round*1.0) {
-                continue;
-            }
-
-            if (!visited[next]) {
-                nub++ ; 
-                visited[next] = true ;
-                q.push(next) ; 
-            }
         
-        }
-
+        // cout << "node : "<< u << ' ' << v << "time : " << t << endl;
+        Graph.insert(make_pair(t,make_pair(u,v))) ; 
     }
 }
 
-void eachRound() {
-    while (1){
-        bfs() ; 
-        if (nub < n) {
-            continue;
-        }
-        break; 
+void init() {
+    for (int i = 1; i < n+1 ; i++) {
+        root[i] = i ;
     }
-    cout << round ;
-    
 }
+
+int parent(int x) {
+    if (x == root[x]) {
+        return x ;
+    }
+    root[x] = parent(root[x]) ; 
+    return root[x];
+
+}
+
+void unionFind(int x,int y) {
+    int a = parent(x) ;
+    int b = parent(y);
+    root[a] = root[b] ; 
+}
+
+void kruskal() {
+    for (auto e : Graph) {
+        int u = e.second.first ;
+        int v = e.second.second ;
+        int t = e.first ;
+
+        if (parent(u) != parent(v)) {
+            unionFind(u,v); 
+            maxEdge = max(maxEdge,t) ;
+            // cout << "node : " << u << ' ' << v << "  and time : " << t <<endl ;
+        }
+    }
+}
+
 int main() {
-    readInput() ; 
-    eachRound()  ;
+    readInput() ;
+    init() ; 
+    kruskal() ;
+    cout << maxEdge ; 
 }
