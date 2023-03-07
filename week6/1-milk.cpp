@@ -27,6 +27,8 @@ void init() {
 }
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
     cin >> n >> q ;
     init() ; 
     for (i=0;i<q;i++) {
